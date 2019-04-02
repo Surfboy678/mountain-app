@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class MountainDto {
 
-
     private String mountainName;
     private String mountainRange;
     private String mountainType;
     private long lengthOfTheMountainRange;
     private long heightAboveSeaLevel;
-    private String mountainImage;
     private String mountainInfo;
+    private String mountainImage;
+
 
 }
