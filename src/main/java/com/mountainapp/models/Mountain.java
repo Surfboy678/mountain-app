@@ -35,6 +35,9 @@ public class Mountain {
    @Column(name = "height_above_sea_level")
    private long heightAboveSeaLevel;
 
+   @Column(name = "mountain_info")
+   private String mountainInfo;
+
    @Column(name = "mountain_image")
    private String mountainImage;
 
