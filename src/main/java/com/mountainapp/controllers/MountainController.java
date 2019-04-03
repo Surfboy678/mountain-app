@@ -23,24 +23,32 @@ public class MountainController {
         return mountainService.getMountains();
 
     }
+    //@GetMapping("/dto/mountains")
+    // public List<MountainDto> getMountainsDto() {
+    //     return mountainService.getMountainsDto();
 
+    //  }
+    @PostMapping("/dto/mountains")
+    public Mountain addMountain(@RequestBody MountainDto mountainDto) {
+        return mountainService.addMountain(mountainDto);
+    }
+
+    @PutMapping("/dto/mountains")
+    public void updateMountain(@RequestBody MountainDto mountainDto) {
+        mountainService.updateMountain(mountainDto);
+    }
+
+    @DeleteMapping("/dto/mountains/{mountainName}")
+    public void deleteMountain(@PathVariable String mountainName) {
+        mountainService.deleteMountain(mountainName);
+    }
 
     @GetMapping("/dto/mountains")
-    public List<MountainDto> getMountainsDto() {
+    public List<MountainDto> getMountainsDto(@RequestParam(value = "height", required = false) Long height) {
+        if (height != null && height > 0){
+            return mountainService.getMountainsByHeightAboveSeaLevel(height);
+        }
         return mountainService.getMountainsDto();
 
-    }
-
-    @PostMapping("/dto/mountains")
-    public Mountain addMountain(@RequestBody MountainDto mountainDto){
-           return mountainService.addMountain(mountainDto);
-    }
-    //@PostMapping("/dto/mountains")
-    //public void updateMountain(@RequestBody MountainDto mountainDto){
-      //  mountainService.updateMountain(mountainDto);
-    //}
-    @DeleteMapping("/dto/mountains/{mountainName}")
-    public void deleteMountain(@PathVariable String mountainName){
-        mountainService.deleteMountain(mountainName);
     }
 }

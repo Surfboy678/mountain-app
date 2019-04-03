@@ -41,6 +41,7 @@ public class MountainService {
         mountainRepository
                 .findMountainByMountainName(mountainDto.getMountainName())
                 .ifPresent(m -> {
+
                     m.setHeightAboveSeaLevel(mountainDto.getHeightAboveSeaLevel());
                     m.setLengthOfTheMountainRange(mountainDto.getLengthOfTheMountainRange());
                     m.setMountainImage(mountainDto.getMountainImage());
@@ -54,6 +55,12 @@ public class MountainService {
         }
         public void deleteMountain(String mountainName){
         mountainRepository.deleteMountainByMountainName(mountainName);
+    }
 
-        }
+    public List<MountainDto> getMountainsByHeightAboveSeaLevel(Long height){
+            return mountainRepository.findMountainsByHeightAboveSeaLevel(height)
+                    .stream()
+                    .map(mountainMapper::map)
+                    .collect(Collectors.toList());
+    }
 }

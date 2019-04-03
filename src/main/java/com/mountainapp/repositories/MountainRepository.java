@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,4 +20,7 @@ public interface MountainRepository extends JpaRepository<Mountain, Long>{
     @Modifying
     @Query("select m from Mountain m where m.mountainName = ?1")
     void deleteMountainByMountainName(String mountainName);
+
+    @Query("select m from Mountain m where m.heightAboveSeaLevel <= ?1")
+    List<Mountain> findMountainsByHeightAboveSeaLevel(Long height);
 }
