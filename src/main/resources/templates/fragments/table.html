@@ -1,0 +1,32 @@
+<div class="container"  xmlns:th="http://www.thymeleaf.org" th:fragment="table">
+    <div class="row">
+        <div class="col-12-md">
+            <table class="table table-bordered">
+                <tr>
+                    <th>mountain name</th>
+                    <th>mountain range</th>
+                    <th>mountain type</th>
+                    <th>mountain info</th>
+                    <th>length of the mountain range</th>
+                    <th>height above sea level</th>
+                    <th>mountain image</th>
+                </tr>
+
+                <tr th:each="m: ${mountains}">
+                    <td th:text="${getMountainName()}"></td>
+                    <td th:text="${getMountainRange()}"></td>
+                    <td th:text="${getMountainType()}"></td>
+                    <td th:text="${getMountainInfo()}"></td>
+                    <td th:text="${#numbers.formatInteger(m.getLengthOfTheMountainRange(), 1, 'COMMA')}"></td>
+                    <td th:text="${#numbers.formatInteger(m.getHeightAboveSeaLevel(), 1, 6, 'COMMA')}"></td>
+                    <td>
+                        <form action="/delete" method="get">
+                            <input type="hidden" th:value="${m.mountainName()}" name="mountain">
+                            <button class="btn btn-sm btn-warning" type="submit">delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

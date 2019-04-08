@@ -18,7 +18,7 @@ public interface MountainRepository extends JpaRepository<Mountain, Long>{
 
     @Transactional
     @Modifying
-    @Query("select m from Mountain m where m.mountainName = ?1")
+    @Query("delete from Mountain m where m.mountainName = ?1")
     void deleteMountainByMountainName(String mountainName);
 
     @Query("select m from Mountain m where m.heightAboveSeaLevel <= ?1")
