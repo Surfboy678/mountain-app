@@ -1,4 +1,4 @@
-package com.mountainapp.view;
+package com.mountainapp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
