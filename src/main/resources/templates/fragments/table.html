@@ -13,15 +13,16 @@
                 </tr>
 
                 <tr th:each="m: ${mountains}">
-                    <td th:text="${getMountainName()}"></td>
-                    <td th:text="${getMountainRange()}"></td>
-                    <td th:text="${getMountainType()}"></td>
-                    <td th:text="${getMountainInfo()}"></td>
+                    <td th:text="${m.getMountainName()}"></td>
+                    <td th:text="${m.getMountainRange()}"></td>
+                    <td th:text="${m.getMountainType()}"></td>
+                    <td th:text="${m.getMountainInfo()}"></td>
                     <td th:text="${#numbers.formatInteger(m.getLengthOfTheMountainRange(), 1, 'COMMA')}"></td>
-                    <td th:text="${#numbers.formatInteger(m.getHeightAboveSeaLevel(), 1, 6, 'COMMA')}"></td>
+                    <td th:text="${#numbers.formatInteger(m.getHeightAboveSeaLevel(), 1,  'COMMA')}"></td>
+
                     <td>
                         <form action="/delete" method="get">
-                            <input type="hidden" th:value="${m.mountainName()}" name="mountain">
+                            <input type="hidden" th:value="${m.getMountainName()}" name="mountain">
                             <button class="btn btn-sm btn-warning" type="submit">delete</button>
                         </form>
                     </td>
