@@ -5,13 +5,21 @@
 
 <header class="masterhead">
 
+<div class="container">
     <div class="row h-100 align-center">
         <div class="col-12 text-center">
             <h3 class="font-weight-light content">Welcome to simple Project Mountain App. <span class="content-header">Enjoy!</span>
             </h3>
-            <a href="/mountains"><p>Mountain app admin panel</p></a>
+            <a href="/mountains"><p>Mountain app admin panel</p></a> <br>
+            <a href="/excel"><p>Create file</p></a>
         </div>
     </div>
+
+    <div class="row">
+        <div th:replace="fragments/overview :: mountains"></div>
+    </div>
+
+</div>
 
 </header>
 

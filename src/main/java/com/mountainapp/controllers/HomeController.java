@@ -1,5 +1,6 @@
 package com.mountainapp.controllers;
 
+import com.mountainapp.commons.extras.CreatorXLS;
 import com.mountainapp.models.dtos.MountainDto;
 import com.mountainapp.services.MountainService;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 @Controller
 public class HomeController {
@@ -19,7 +23,8 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String homePage(){
+    public String homePage(Model model){
+        model.addAttribute("mountains", mountainService.getMountainsDto());
         return "index";
     }
 
@@ -37,5 +42,12 @@ public class HomeController {
     public String addMountain(@ModelAttribute MountainDto mountain){
         mountainService.addMountain(mountain);
         return "redirect:/mountains";
+    }
+    @GetMapping("/excel")
+    public String createFile() throws NoSuchMethodException, IOException, IllegalAccessException, InvocationTargetException {
+        CreatorXLS<MountainDto> creatorXLS = new CreatorXLS<>(MountainDto.class);
+        creatorXLS.creataFile(mountainService.getMountainsDto(), "src/main/resources", "mountains");
+        return "redirect:/";
+
     }
 }
