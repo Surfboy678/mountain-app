@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Entity
 @Data
@@ -29,4 +29,11 @@ public class UserApp {
             joinColumns= @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id") )
 
     private Set<Role> roles;
+
+    public UserApp(UserApp userApp) {
+        this.name = userApp.getName();
+        this.password = userApp.getPassword();
+        this.active = userApp.getActive();
+        this.roles = userApp.getRoles();
+    }
 }
